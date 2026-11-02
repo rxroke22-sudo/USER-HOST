@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TC ASHRAFUL | Electrical Service</title>
+<style>
+:root{--bg:#07111f;--panel:#101f32;--panel2:#172b43;--text:#f4f7fb;--muted:#a9b8ca;--gold:#ffbf3f;--green:#18b981;--line:#29415d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#07111f,#10233a);color:var(--text);font-family:Arial,"Noto Sans Bengali",sans-serif}
+.wrap{max-width:760px;margin:auto;padding:18px}.hero{background:linear-gradient(120deg,#142b45,#0b1727);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:18px}
+.brand{font-weight:900;letter-spacing:1px;color:var(--gold);font-size:13px}.hero h1{font-size:25px;margin:9px 0}.hero p,.muted{color:var(--muted);font-size:14px;line-height:1.6;margin:5px 0}
+.section-title{font-size:18px;margin:22px 2px 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.job{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:14px;padding:15px;text-align:left;cursor:pointer;min-height:102px;transition:.15s}
+.job:hover,.job.active{border-color:var(--gold);background:#1b3049}.job small{display:block;color:var(--muted);margin-bottom:9px}.job strong{font-size:14px;line-height:1.4;display:block}.price{color:var(--gold);font-weight:800;margin-top:9px;display:block}
+.notice{border:1px solid #80652c;background:#302817;padding:16px;border-radius:14px;line-height:1.7;margin-top:14px}.notice a{color:var(--gold);font-weight:bold}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;margin-top:15px}
+.hidden{display:none!important}label{display:block;font-size:14px;margin:13px 0 6px;color:#dce6f2}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#081626;color:white;font:inherit;outline:none}
+input:focus,textarea:focus{border-color:var(--gold)}textarea{min-height:100px;resize:vertical}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.qty{display:flex;align-items:center;gap:10px}.qty button{width:34px;height:34px;border:0;border-radius:9px;background:var(--panel2);color:white;font-size:20px;cursor:pointer}
+.total{font-size:23px;color:var(--gold);font-weight:900}.pay{background:#0b2c26;border:1px solid #17694f;padding:14px;border-radius:12px;line-height:1.7;margin:15px 0}
+.btn{width:100%;border:0;border-radius:12px;padding:14px;background:var(--green);color:#041b13;font-size:16px;font-weight:900;cursor:pointer;margin-top:14px}.btn:disabled{opacity:.45;cursor:not-allowed}
+.secondary{background:#263b53;color:white}.hint{font-size:12px;color:var(--muted);line-height:1.6}
+@media(max-width:480px){.wrap{padding:12px}.grid{grid-template-columns:1fr 1fr}.hero h1{font-size:22px}.job{padding:12px}.job strong{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand">⚡ TC ASHRAFUL ELECTRICAL SERVICE</div>
+    <h1>ইলেকট্রিক কাজের অর্ডার করুন</h1>
+    <p>আপনার প্রয়োজনীয় কাজটি নির্বাচন করুন, পরিমাণ দিন এবং অর্ডার জমা দিন।</p>
+  </header>
+
+  <h2 class="section-title">কাজের তালিকা — রেটসহ</h2>
+  <div class="grid" id="jobList"></div>
+
+  <div class="notice">
+    <strong>🏠 BUILDING WIRING & ছাদে PVC PIPE সেট করা</strong><br>
+    এই কাজের জন্য সরাসরি চুক্তি করুন।<br>
+    মোবাইল: <a href="tel:8801704017061">8801704017061</a>
+  </div>
+
+  <section class="card hidden" id="details">
+    <div class="muted">নির্বাচিত কাজ</div>
+    <h2 id="selectedName" style="margin:7px 0 3px"></h2>
+    <div class="row">
+      <div>প্রতি কাজের রেট: <strong id="unitPrice" class="price"></strong></div>
+      <div class="qty">
+        <button type="button" id="minus" aria-label="কমাও">−</button>
+        <strong id="quantity">1</strong>
+        <button type="button" id="plus" aria-label="বাড়াও">+</button>
+      </div>
+    </div>
+    <label for="workNote">কী কী কাজ করাতে চান? বিস্তারিত লিখুন</label>
+    <textarea id="workNote" placeholder="যেমন: ২টি লাইট পয়েন্ট, ১টি ফ্যান পয়েন্ট..."></textarea>
+    <div class="row" style="margin-top:15px">
+      <strong>মোট টাকা</strong><strong class="total" id="total">৳১৪০</strong>
+    </div>
+    <button class="btn" type="button" id="orderBtn">ORDER করুন</button>
+  </section>
+
+  <section class="card hidden" id="orderForm">
+    <h2 style="margin-top:0">অর্ডারের তথ্য দিন</h2>
+    <label for="customerName">আপনার সঠিক নাম</label>
+    <input id="customerName" placeholder="আপনার নাম লিখুন" autocomplete="name">
+    <label for="customerPhone">মোবাইল নম্বর</label>
+    <input id="customerPhone" type="tel" placeholder="01XXXXXXXXX" autocomplete="tel">
+    <label for="customerAddress">সম্পূর্ণ ঠিকানা</label>
+    <textarea id="customerAddress" placeholder="গ্রাম/এলাকা, ইউনিয়ন, উপজেলা, জেলা"></textarea>
+    <div class="pay">
+      <strong>💳 পেমেন্ট নির্দেশনা — নগদ (Nagad)</strong><br>
+      নগদ নম্বর: <strong style="font-size:20px">01945706386</strong><br>
+      উপরের মোট টাকার পরিমাণ এই নম্বরে Send Money করুন।<br>
+      <span class="hint">পেমেন্ট করার পর Transaction ID নিচে লিখুন। পেমেন্ট যাচাই করে অর্ডার নিশ্চিত করা হবে।</span>
+    </div>
+    <label for="trx">নগদ Transaction ID (পেমেন্ট করলে)</label>
+    <input id="trx" placeholder="যেমন: 8A1B2C3D">
+    <p class="hint">অর্ডার জমা দিলে আপনার ডিভাইসের ইমেইল অ্যাপ খুলবে এবং অর্ডারের তথ্য Gmail ঠিকানায় পাঠানোর জন্য প্রস্তুত থাকবে। Send চাপতে হবে।</p>
+    <button class="btn" type="button" id="submitBtn">অর্ডার Submit করুন</button>
+    <button class="btn secondary" type="button" id="backBtn">ফিরে যান</button>
+  </section>
+  <p class="hint" style="text-align:center;margin:22px 0">TC ASHRAFUL ELECTRICAL SERVICE · Customer Order</p>
+</div>
+<script>
+const jobs=[
+ ["LIGHT POINT",140],["FAN POINT",200],["REFRIGERATOR POINT",250],["SOCKET POINT",130],["TV SET",200],
+ ["CIRCUIT BREAKER SINGLE POLE",150],["CIRCUIT BREAKER DOUBLE POLE",300],["SERVICE METER HOUSE CHANGE",1000],
+ ["REGULATOR POINT",100],["HOLDER CHANGE",100]
+];
+const bn=n=>new Intl.NumberFormat("bn-BD").format(n);
+let selected=null,qty=1;
+const list=document.getElementById("jobList");
+jobs.forEach((j,i)=>{
+ const b=document.createElement("button");b.type="button";b.className="job";
+ b.innerHTML=`<small>কাজ নং ${bn(i+1)}</small><strong>${j[0]}</strong><span class="price">৳${bn(j[1])}</span>`;
+ b.addEventListener("click",()=>choose(i,b));list.appendChild(b);
+});
+function choose(i,button){
+ selected=i;qty=1;
+ document.querySelectorAll(".job").forEach(x=>x.classList.remove("active"));
+ button.classList.add("active");
+ document.getElementById("selectedName").textContent=jobs[i][0];
+ document.getElementById("unitPrice").textContent="৳"+bn(jobs[i][1]);
+ document.getElementById("quantity").textContent=bn(qty);
+ document.getElementById("workNote").value="";
+ updateTotal();
+ document.getElementById("details").classList.remove("hidden");
+ document.getElementById("orderForm").classList.add("hidden");
+ document.getElementById("details").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function updateTotal(){document.getElementById("total").textContent="৳"+bn(jobs[selected][1]*qty);document.getElementById("quantity").textContent=bn(qty)}
+document.getElementById("plus").onclick=()=>{qty++;updateTotal()};
+document.getElementById("minus").onclick=()=>{if(qty>1)qty--;updateTotal()};
+document.getElementById("orderBtn").onclick=()=>{
+ document.getElementById("orderForm").classList.remove("hidden");
+ document.getElementById("orderForm").scrollIntoView({behavior:"smooth",block:"start"});
+};
+document.getElementById("backBtn").onclick=()=>document.getElementById("details").scrollIntoView({behavior:"smooth"});
+document.getElementById("submitBtn").onclick=()=>{
+ const name=document.getElementById("customerName").value.trim();
+ const phone=document.getElementById("customerPhone").value.trim();
+ const address=document.getElementById("customerAddress").value.trim();
+ const note=document.getElementById("workNote").value.trim();
+ const trx=document.getElementById("trx").value.trim();
+ if(!name||!phone||!address){alert("দয়া করে নাম, মোবাইল নম্বর ও সম্পূর্ণ ঠিকানা লিখুন।");return}
+ if(!/^01[0-9]{9}$/.test(phone)){alert("সঠিক ১১ সংখ্যার বাংলাদেশি মোবাইল নম্বর লিখুন।");return}
+ const amount=jobs[selected][1]*qty;
+ const body=
+`নতুন ইলেকট্রিক কাজের অর্ডার\n\nকাজ: ${jobs[selected][0]}\nপরিমাণ: ${qty}\nপ্রতি কাজের রেট: ${jobs[selected][1]} টাকা\nমোট টাকা: ${amount} টাকা\nকাজের বিবরণ: ${note||"বিস্তারিত দেওয়া হয়নি"}\n\nকাস্টমারের নাম: ${name}\nমোবাইল: ${phone}\nঠিকানা: ${address}\nনগদ Transaction ID: ${trx||"দেওয়া হয়নি"}\n\nনগদ নম্বর: 01945706386`;
+ const subject=encodeURIComponent("Electrical Service Order - "+name);
+ const mailto="mailto:RXROKE22@GMAIL.COM?subject="+subject+"&body="+encodeURIComponent(body);
+ window.location.href=mailto;
+ alert("আপনার ইমেইল অ্যাপ খুললে Send চাপুন। ইমেইল পাঠানো সম্পন্ন না হওয়া পর্যন্ত অর্ডার জমা হয়েছে বলে গণ্য হবে না।");
+};
+</script>
+</body>
+</html>
