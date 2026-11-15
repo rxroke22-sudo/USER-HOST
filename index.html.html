@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#040814" />
+  <title>ASHRAFUL ELECTRIC — ইলেকট্রিক্যাল সার্ভিস অর্ডারিং</title>
+
+  <!-- Google Fonts: Bengali & Display Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg-black: #03060e;
+      --bg-navy: #09142c;
+      --bg-card: rgba(10, 22, 48, 0.82);
+      --bg-card-hover: rgba(14, 30, 66, 0.92);
+      --electric-blue: #00d4ff;
+      --electric-deep: #0066ff;
+      --text-primary: #f1f6ff;
+      --text-secondary: #a8bddc;
+      --danger-red: #ff3b4e;
+      --success-green: #16c765;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Hind Siliguri", system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-black);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0, 102, 255, 0.18), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(0, 212, 255, 0.14), transparent 42%),
+        radial-gradient(circle at 50% 90%, rgba(10, 30, 80, 0.38), transparent 50%),
+        linear-gradient(rgba(0, 180, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 180, 255, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ================= HEADER ================= */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 9, 22, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.22);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .brand-bolt {
+      font-size: 1.45rem;
+      filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.9));
+      animation: boltFlicker 2.6s infinite ease-in-out;
+    }
+
+    .brand-name {
+      font-family: "Orbitron", "Hind Siliguri", sans-serif;
+      font-size: clamp(1.02rem, 2.8vw, 1.38rem);
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      background: linear-gradient(90deg, #ffffff 0%, #7ae6ff 55%, #00a2ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes boltFlicker {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.14); opacity: 0.85; }
+    }
+
+    /* Continuous RGB Animated Phone Button */
+    .rgb-phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(6, 14, 34, 0.9);
+      text-decoration: none;
+      font-family: "Orbitron", sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.88rem, 2.4vw, 1.04rem);
+      letter-spacing: 0.9px;
+      border: 2px solid #ff2a2a;
+      animation: rgbCycle 2.4s linear infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .rgb-phone-link:hover {
+      transform: translateY(-1px) scale(1.03);
+    }
+
+    .rgb-phone-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    @keyframes rgbCycle {
+      0% {
+        color: #ff3333;
+        border-color: #ff3333;
+        box-shadow: 0 0 14px rgba(255, 51, 51, 0.65), inset 0 0 8px rgba(255, 51, 51, 0.18);
+      }
+      33% {
+        color: #00ff6a;
+        border-color: #00ff6a;
+        box-shadow: 0 0 14px rgba(0, 255, 106, 0.65), inset 0 0 8px rgba(0, 255, 106, 0.18);
+      }
+      66% {
+        color: #1e90ff;
+        border-color: #1e90ff;
+        box-shadow: 0 0 16px rgba(30, 144, 255, 0.75), inset 0 0 8px rgba(30, 144, 255, 0.2);
+      }
+      100% {
+        color: #ff3333;
+        border-color: #ff3333;
+        box-shadow: 0 0 14px rgba(255, 51, 51, 0.65), inset 0 0 8px rgba(255, 51, 51, 0.18);
+      }
+    }
+
+    /* ================= MAIN CONTAINER ================= */
+    .main-container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 48px;
+      flex: 1;
+    }
+
+    .view-section {
+      animation: fadeSlideIn 0.35s ease forwards;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================= PAYMENT NOTICE BANNER ================= */
+    .payment-notice {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(85, 8, 18, 0.72), rgba(38, 6, 14, 0.88));
+      border: 1.5px solid rgba(255, 59, 78, 0.7);
+      text-align: center;
+      box-shadow: 0 0 28px rgba(255, 42, 66, 0.25), inset 0 0 18px rgba(255, 42, 66, 0.12);
+      animation: noticePulse 2.2s ease-in-out infinite;
+    }
+
+    .payment-notice-text {
+      font-size: clamp(1.12rem, 3.2vw, 1.55rem);
+      font-weight: 700;
+      color: #ff5768;
+      letter-spacing: 0.3px;
+      text-shadow: 0 0 12px rgba(255, 59, 78, 0.85), 0 0 28px rgba(255, 30, 50, 0.55);
+    }
+
+    @keyframes noticePulse {
+      0%, 100% {
+        box-shadow: 0 0 24px rgba(255, 42, 66, 0.26), inset 0 0 14px rgba(255, 42, 66, 0.1);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 36px rgba(255, 42, 66, 0.45), inset 0 0 22px rgba(255, 42, 66, 0.22);
+        transform: scale(1.006);
+      }
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero-intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--electric-blue);
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.45rem, 3.8vw, 2.15rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 2.3vw, 1.08rem);
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ================= SERVICES GRID ================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 26px 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1.5px solid rgba(0, 195, 255, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.48), 0 0 22px rgba(0, 150, 255, 0.14);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.75), rgba(0, 80, 255, 0.25), rgba(0, 212, 255, 0.75));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65), 0 0 34px rgba(0, 212, 255, 0.34);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .service-tag {
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(0, 136, 255, 0.18);
+      color: #7ee3ff;
+      border: 1px solid rgba(0, 212, 255, 0.36);
+    }
+
+    .service-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 90, 255, 0.22));
+      border: 1px solid rgba(0, 212, 255, 0.45);
+      color: var(--electric-blue);
+      box-shadow: 0 0 18px rgba(0, 212, 255, 0.22);
+    }
+
+    .service-title {
+      font-size: clamp(1.22rem, 2.6vw, 1.48rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.38;
+    }
+
+    .service-desc {
+      font-size: 1.03rem;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+    }
+
+    .service-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(3, 10, 28, 0.72);
+      border: 1px solid rgba(0, 195, 255, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .price-label {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .price-value {
+      font-size: 1.62rem;
+      font-weight: 700;
+      color: var(--electric-blue);
+      text-shadow: 0 0 14px rgba(0, 212, 255, 0.45);
+    }
+
+    /* ================= DIRECT CONTACT OPTION CARD ================= */
+    .contact-option-wrapper {
+      margin-top: 26px;
+    }
+
+    .contact-option-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(10, 26, 58, 0.9), rgba(6, 15, 36, 0.95));
+      border: 2px solid rgba(0, 255, 136, 0.45);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 26px rgba(0, 212, 255, 0.2);
+      text-decoration: none;
+      color: #ffffff;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .contact-option-card:hover {
+      transform: translateY(-4px);
+      border-color: #00ff88;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.7), 0 0 34px rgba(0, 255, 136, 0.32);
+    }
+
+    .contact-option-card:active {
+      transform: scale(0.99);
+    }
+
+    .contact-option-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #00e676, #00b0ff);
+      color: #021224;
+      box-shadow: 0 0 22px rgba(0, 230, 118, 0.55);
+      animation: callRing 2s infinite ease-in-out;
+    }
+
+    @keyframes callRing {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      15% { transform: scale(1.08) rotate(-10deg); }
+      30% { transform: scale(1.08) rotate(10deg); }
+      45% { transform: scale(1.04) rotate(-6deg); }
+      60% { transform: scale(1) rotate(0deg); }
+    }
+
+    .contact-option-title {
+      font-size: clamp(1.12rem, 2.8vw, 1.42rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.4;
+    }
+
+    .contact-option-number {
+      font-family: "Orbitron", "Hind Siliguri", sans-serif;
+      color: #00ff95;
+      text-shadow: 0 0 12px rgba(0, 255, 149, 0.55);
+    }
+
+    .contact-option-sub {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .contact-call-pill {
+      padding: 11px 22px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(90deg, #00e676, #00d4ff);
+      color: #021224;
+      font-size: 1.02rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(0, 230, 118, 0.35);
+    }
+
+    /* ================= BUTTONS ================= */
+    .btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      border: none;
+      font-family: inherit;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      color: #021022;
+      background: linear-gradient(90deg, #00d4ff 0%, #38a3ff 50%, #00d4ff 100%);
+      background-size: 200% auto;
+      box-shadow: 0 6px 22px rgba(0, 180, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 212, 255, 0.6);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.985);
+    }
+
+    .btn-secondary {
+      width: auto;
+      padding: 10px 18px;
+      background: rgba(12, 27, 62, 0.85);
+      color: var(--text-primary);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      font-size: 0.98rem;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(18, 40, 88, 0.95);
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 16px rgba(0, 212, 255, 0.28);
+    }
+
+    /* ================= ORDER PAGE ================= */
+    .order-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .order-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .order-card {
+      padding: 28px 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1.5px solid rgba(0, 212, 255, 0.38);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 140, 255, 0.16);
+    }
+
+    .order-heading {
+      font-size: clamp(1.3rem, 3vw, 1.65rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .selected-summary {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(0, 60, 135, 0.32), rgba(4, 14, 38, 0.85));
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      margin-bottom: 24px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .summary-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .summary-service-name {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .summary-price-badge {
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: rgba(0, 212, 255, 0.14);
+      border: 1px solid rgba(0, 212, 255, 0.45);
+      color: var(--electric-blue);
+      font-size: 1.38rem;
+      font-weight: 700;
+      white-space: nowrap;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.45);
+    }
+
+    .summary-note {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: #ff8e99;
+      font-weight: 600;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #dce9ff;
+      margin-bottom: 7px;
+    }
+
+    .required-star {
+      color: var(--danger-red);
+      margin-left: 3px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: var(--radius-md);
+      background: rgba(4, 10, 26, 0.88);
+      border: 1.5px solid rgba(0, 175, 255, 0.28);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 1.02rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: #6b82a8;
+    }
+
+    .form-control:focus {
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2), 0 0 18px rgba(0, 212, 255, 0.22);
+      background: rgba(6, 15, 38, 0.96);
+    }
+
+    .form-control.is-invalid {
+      border-color: var(--danger-red);
+      box-shadow: 0 0 0 3px rgba(255, 59, 78, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .field-error {
+      margin-top: 6px;
+      font-size: 0.88rem;
+      color: #ff6b7a;
+      font-weight: 500;
+      display: none;
+    }
+
+    .field-error.visible {
+      display: block;
+    }
+
+    .form-hint {
+      margin-top: 5px;
+      font-size: 0.84rem;
+      color: #88a2cb;
+    }
+
+    /* ================= FULLSCREEN NOTIFICATION POPUP ================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(2, 6, 16, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 460px;
+      padding: 34px 24px 28px;
+      border-radius: 22px;
+      background: linear-gradient(160deg, #0b1b3d 0%, #050c1f 100%);
+      border: 1.5px solid rgba(22, 199, 101, 0.7);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75), 0 0 42px rgba(22, 199, 101, 0.28);
+      text-align: center;
+      transform: scale(0.84) translateY(16px);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .success-circle {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #22e578 0%, #13b859 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 32px rgba(22, 199, 101, 0.65);
+      animation: popScale 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes popScale {
+      0% { transform: scale(0.4); opacity: 0; }
+      70% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .tick-svg {
+      width: 46px;
+      height: 46px;
+      stroke: #ffffff;
+      stroke-width: 5.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .tick-path {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawTick 0.45s 0.15s ease forwards;
+    }
+
+    @keyframes drawTick {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .modal-title {
+      font-size: 1.38rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .notification-call-box {
+      display: block;
+      padding: 18px 16px;
+      margin-bottom: 22px;
+      border-radius: 14px;
+      background: rgba(0, 212, 255, 0.12);
+      border: 1.5px solid rgba(0, 255, 149, 0.55);
+      box-shadow: 0 0 24px rgba(0, 212, 255, 0.22);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .notification-call-box:hover {
+      background: rgba(0, 212, 255, 0.2);
+      border-color: #00ff95;
+      transform: translateY(-2px);
+    }
+
+    .notification-main-text {
+      font-size: clamp(1.15rem, 3.2vw, 1.35rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .notification-phone-highlight {
+      font-family: "Orbitron", "Hind Siliguri", sans-serif;
+      color: #00ff95;
+      text-shadow: 0 0 12px rgba(0, 255, 149, 0.55);
+    }
+
+    .notification-tap-hint {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7ee3ff;
+    }
+
+    .btn-success-ok {
+      background: linear-gradient(90deg, #17cf68, #12b257);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(22, 199, 101, 0.42);
+    }
+
+    .btn-success-ok:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(22, 199, 101, 0.6);
+    }
+
+    /* ================= FOOTER ================= */
+    .app-footer {
+      border-top: 1px solid rgba(0, 195, 255, 0.18);
+      background: rgba(3, 7, 18, 0.9);
+      text-align: center;
+      padding: 18px 16px;
+      font-size: 0.94rem;
+      color: #8ba3c7;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .main-container {
+        padding: 18px 14px 36px;
+      }
+
+      .service-card,
+      .order-card {
+        padding: 22px 18px;
+      }
+
+      .contact-option-card {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        padding: 20px 18px;
+      }
+
+      .contact-option-left {
+        flex-direction: column;
+      }
+
+      .contact-call-pill {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .payment-notice {
+        padding: 14px 12px;
+      }
+
+      .order-topbar {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="#home" class="brand" id="brandLogo" aria-label="ASHRAFUL ELECTRIC হোমপেজ">
+        <span class="brand-bolt" aria-hidden="true">⚡</span>
+        <span class="brand-name">ASHRAFUL ELECTRIC</span>
+      </a>
+
+      <a
+        href="tel:01704017061"
+        class="rgb-phone-link"
+        title="কল করতে ক্লিক করুন: 01704017061"
+        aria-label="সরাসরি কল করুন 01704017061"
+      >
+        <svg class="rgb-phone-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"
+          />
+        </svg>
+        <span>01704017061</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-container">
+    <!-- ============== HOMEPAGE VIEW ============== -->
+    <section id="homeView" class="view-section" aria-label="সার্ভিস তালিকা">
+      <div class="payment-notice" role="alert">
+        <p class="payment-notice-text">⚠️ কাজ শেষ করার পর বিল নেওয়া হয়! ⚠️</p>
+      </div>
+
+      <div class="hero-intro">
+        <span class="hero-badge">দ্রুত ও বিশ্বস্ত ইলেকট্রিক্যাল সার্ভিস</span>
+        <h1 class="hero-title">আমাদের ইলেকট্রিক্যাল সার্ভিস সমূহ</h1>
+        <p class="hero-subtitle">
+          আপনার প্রয়োজনীয় সার্ভিসটি বেছে নিন এবং কয়েক সেকেন্ডের মধ্যে অনলাইনে অর্ডার করুন।
+        </p>
+      </div>
+
+      <!-- Exactly Two Services -->
+      <div class="services-grid">
+        <article class="service-card">
+          <div>
+            <div class="service-top">
+              <span class="service-tag">সার্ভিস ০১</span>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="3" width="16" height="18" rx="2" />
+                  <path d="M8 7h8v4H8z" />
+                  <path d="M12 14v4" />
+                  <path d="M9 16h6" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="service-title">মিটার স্থান পরিবর্তন</h2>
+            <p class="service-desc">শুধু মিটারের স্থান পরিবর্তন।</p>
+          </div>
+
+          <div>
+            <div class="service-price-row">
+              <span class="price-label">সার্ভিস চার্জ</span>
+              <span class="price-value">৳ ১,০০০</span>
+            </div>
+            <button type="button" class="btn btn-primary select-service-btn" data-service-id="service1">
+              অর্ডার করুন
+            </button>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <div>
+            <div class="service-top">
+              <span class="service-tag">সার্ভিস ০২</span>
+              <div class="service-icon-box" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M7 8h4v8H7z" />
+                  <path d="M13 8h4v3h-4z" />
+                  <path d="M13 13h4v3h-4z" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="service-title">মিটার স্থান পরিবর্তন ব্রেকার ও বোর্ড সহকারে</h2>
+            <p class="service-desc">মিটার + ব্রেকার + বোর্ড সার্ভিস।</p>
+          </div>
+
+          <div>
+            <div class="service-price-row">
+              <span class="price-label">সার্ভিস চার্জ</span>
+              <span class="price-value">৳ ২,০০০</span>
+            </div>
+            <button type="button" class="btn btn-primary select-service-btn" data-service-id="service2">
+              অর্ডার করুন
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Direct Contact Option (Opens Phone Call App & Auto-Dials Number) -->
+      <div class="contact-option-wrapper">
+        <a
+          href="tel:01704017061"
+          id="directCallOption"
+          class="contact-option-card"
+          aria-label="যোগাযোগ নাম্বার 01704017061 - কল করতে ক্লিক করুন"
+        >
+          <div class="contact-option-left">
+            <div class="contact-icon-circle" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-option-title">
+                যোগাযোগ নাম্বার - <span class="contact-option-number">01704017061</span>
+              </div>
+              <p class="contact-option-sub">
+                সরাসরি ফোনে কথা বলতে বা জরুরি সার্ভিসের জন্য নাম্বারে ক্লিক করুন
+              </p>
+            </div>
+          </div>
+          <span class="contact-call-pill">📞 কল করুন</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============== ORDER PAGE VIEW ============== -->
+    <section id="orderView" class="view-section hidden" aria-label="অর্ডার ফর্ম">
+      <div class="order-wrapper">
+        <div class="order-topbar">
+          <button type="button" id="backToHomeBtn" class="btn btn-secondary">
+            ← ফিরে যান
+          </button>
+          <span class="service-tag">অনলাইন অর্ডার ফর্ম</span>
+        </div>
+
+        <div class="order-card">
+          <h1 class="order-heading">⚡ অর্ডার তথ্য পূরণ করুন</h1>
+
+          <div class="selected-summary">
+            <div class="summary-row">
+              <div>
+                <span class="summary-label">নির্বাচিত সার্ভিস:</span>
+                <div id="selectedServiceName" class="summary-service-name">—</div>
+              </div>
+              <div id="selectedServicePrice" class="summary-price-badge">৳ ০</div>
+            </div>
+            <p class="summary-note">⚠️ কাজ শেষ করার পর বিল নেওয়া হয়!</p>
+          </div>
+
+          <form id="orderForm" novalidate>
+            <div class="form-group">
+              <label for="customerName" class="form-label">
+                গ্রাহকের নাম <span class="required-star">*</span>
+              </label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                class="form-control"
+                placeholder="আপনার সম্পূর্ণ নাম লিখুন"
+                autocomplete="name"
+                required
+              />
+              <div id="nameError" class="field-error">অনুগ্রহ করে আপনার নাম লিখুন।</div>
+            </div>
+
+            <div class="form-group">
+              <label for="customerAddress" class="form-label">
+                গ্রাহকের ঠিকানা <span class="required-star">*</span>
+              </label>
+              <textarea
+                id="customerAddress"
+                name="customerAddress"
+                class="form-control"
+                placeholder="বাসা/হোল্ডিং নম্বর, রোড, এলাকা ও থানার নাম লিখুন"
+                autocomplete="street-address"
+                required
+              ></textarea>
+              <div id="addressError" class="field-error">অনুগ্রহ করে আপনার সম্পূর্ণ ঠিকানা লিখুন।</div>
+            </div>
+
+            <div class="form-group">
+              <label for="customerPhone" class="form-label">
+                গ্রাহকের মোবাইল নম্বর <span class="required-star">*</span>
+              </label>
+              <input
+                type="tel"
+                id="customerPhone"
+                name="customerPhone"
+                class="form-control"
+                placeholder="01XXXXXXXXX (১১ ডিজিট)"
+                inputmode="numeric"
+                maxlength="14"
+                autocomplete="tel"
+                required
+              />
+              <p class="form-hint">উদাহরণ: 01704017061 (০১ দিয়ে শুরু ১১ ডিজিটের নম্বর)</p>
+              <div id="phoneError" class="field-error">
+                সঠিক ১১ ডিজিটের বাংলাদেশি মোবাইল নম্বর দিন (০১ দিয়ে শুরু)।
+              </div>
+            </div>
+
+            <button type="submit" id="confirmOrderBtn" class="btn btn-primary">
+              অর্ডার কনফার্ম করুন
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="app-footer">
+    © 2026 ASHRAFUL ELECTRIC.
+  </footer>
+
+  <!-- ================= ORDER NOTIFICATION POPUP ================= -->
+  <div
+    id="orderNotificationModal"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="notificationMessageText"
+  >
+    <div class="modal-box">
+      <div class="success-circle" aria-hidden="true">
+        <svg class="tick-svg" viewBox="0 0 52 52">
+          <path class="tick-path" d="M14 27 L22 35 L38 17" />
+        </svg>
+      </div>
+      <h2 class="modal-title">ধন্যবাদ!</h2>
+
+      <a
+        href="tel:01704017061"
+        class="notification-call-box"
+        aria-label="যোগাযোগ করুন 01704017061 নম্বর এ - কল করতে ক্লিক করুন"
+      >
+        <p id="notificationMessageText" class="notification-main-text">
+          যোগাযোগ করুন <span class="notification-phone-highlight">01704017061</span> নম্বর এ
+        </p>
+        <span class="notification-tap-hint">📞 কল করতে নম্বরে ক্লিক করুন</span>
+      </a>
+
+      <button type="button" id="notificationOkBtn" class="btn btn-success-ok">
+        ঠিক আছে
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    (function () {
+      "use strict";
+
+      // Fixed Immutable Services
+      const SERVICES = Object.freeze({
+        service1: Object.freeze({
+          id: "service1",
+          displayName: "মিটার স্থান পরিবর্তন",
+          displayPrice: "৳ ১,০০০"
+        }),
+        service2: Object.freeze({
+          id: "service2",
+          displayName: "মিটার স্থান পরিবর্তন ব্রেকার ও বোর্ড সহকারে",
+          displayPrice: "৳ ২,০০০"
+        })
+      });
+
+      let activeService = null;
+
+      // DOM References
+      const homeView = document.getElementById("homeView");
+      const orderView = document.getElementById("orderView");
+      const brandLogo = document.getElementById("brandLogo");
+      const backToHomeBtn = document.getElementById("backToHomeBtn");
+      const selectServiceButtons = document.querySelectorAll(".select-service-btn");
+
+      const selectedServiceNameEl = document.getElementById("selectedServiceName");
+      const selectedServicePriceEl = document.getElementById("selectedServicePrice");
+
+      const orderForm = document.getElementById("orderForm");
+      const customerNameInput = document.getElementById("customerName");
+      const customerAddressInput = document.getElementById("customerAddress");
+      const customerPhoneInput = document.getElementById("customerPhone");
+
+      const nameError = document.getElementById("nameError");
+      const addressError = document.getElementById("addressError");
+      const phoneError = document.getElementById("phoneError");
+
+      const orderNotificationModal = document.getElementById("orderNotificationModal");
+      const notificationOkBtn = document.getElementById("notificationOkBtn");
+
+      function normalizePhoneNumber(rawValue) {
+        const bnToEn = {
+          "০": "0", "১": "1", "২": "2", "৩": "3", "৪": "4",
+          "৫": "5", "৬": "6", "৭": "7", "৮": "8", "৯": "9"
+        };
+        return rawValue
+          .trim()
+          .replace(/[০-৯]/g, (d) => bnToEn[d])
+          .replace(/[\s\-()]/g, "");
+      }
+
+      function isValidBangladeshiMobile(phone) {
+        return /^01\d{9}$/.test(phone);
+      }
+
+      function clearValidationErrors() {
+        [customerNameInput, customerAddressInput, customerPhoneInput].forEach((el) =>
+          el.classList.remove("is-invalid")
+        );
+        [nameError, addressError, phoneError].forEach((el) =>
+          el.classList.remove("visible")
+        );
+      }
+
+      function openOrderPage(serviceId, pushHash = true) {
+        const service = SERVICES[serviceId];
+        if (!service) return;
+
+        activeService = service;
+        selectedServiceNameEl.textContent = service.displayName;
+        selectedServicePriceEl.textContent = service.displayPrice;
+
+        clearValidationErrors();
+        homeView.classList.add("hidden");
+        orderView.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (pushHash) {
+          window.location.hash = `#order-${service.id}`;
+        }
+      }
+
+      function showHomePage(pushHash = true) {
+        activeService = null;
+        orderView.classList.add("hidden");
+        homeView.classList.remove("hidden");
+        clearValidationErrors();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (pushHash && window.location.hash !== "#home") {
+          window.location.hash = "#home";
+        }
+      }
+
+      function validateForm() {
+        clearValidationErrors();
+        let isValid = true;
+
+        const nameVal = customerNameInput.value.trim();
+        const addressVal = customerAddressInput.value.trim();
+        const phoneVal = normalizePhoneNumber(customerPhoneInput.value);
+
+        if (!nameVal) {
+          customerNameInput.classList.add("is-invalid");
+          nameError.classList.add("visible");
+          isValid = false;
+        }
+
+        if (!addressVal) {
+          customerAddressInput.classList.add("is-invalid");
+          addressError.classList.add("visible");
+          isValid = false;
+        }
+
+        if (!isValidBangladeshiMobile(phoneVal)) {
+          customerPhoneInput.classList.add("is-invalid");
+          phoneError.classList.add("visible");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function handleOrderSubmit(event) {
+        event.preventDefault();
+        if (!activeService) return;
+
+        if (!validateForm()) return;
+
+        orderForm.reset();
+        showHomePage(true);
+        orderNotificationModal.classList.add("active");
+      }
+
+      // Event Listeners
+      selectServiceButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          openOrderPage(btn.getAttribute("data-service-id"), true);
+        });
+      });
+
+      backToHomeBtn.addEventListener("click", () => showHomePage(true));
+
+      brandLogo.addEventListener("click", (e) => {
+        e.preventDefault();
+        showHomePage(true);
+      });
+
+      orderForm.addEventListener("submit", handleOrderSubmit);
+
+      customerNameInput.addEventListener("input", () => {
+        customerNameInput.classList.remove("is-invalid");
+        nameError.classList.remove("visible");
+      });
+
+      customerAddressInput.addEventListener("input", () => {
+        customerAddressInput.classList.remove("is-invalid");
+        addressError.classList.remove("visible");
+      });
+
+      customerPhoneInput.addEventListener("input", () => {
+        customerPhoneInput.classList.remove("is-invalid");
+        phoneError.classList.remove("visible");
+      });
+
+      notificationOkBtn.addEventListener("click", () => {
+        orderNotificationModal.classList.remove("active");
+        showHomePage(true);
+      });
+
+      window.addEventListener("hashchange", () => {
+        const hash = window.location.hash;
+        if (hash === "#order-service1") {
+          openOrderPage("service1", false);
+        } else if (hash === "#order-service2") {
+          openOrderPage("service2", false);
+        } else {
+          showHomePage(false);
+        }
+      });
+
+      if (window.location.hash === "#order-service1") {
+        openOrderPage("service1", false);
+      } else if (window.location.hash === "#order-service2") {
+        openOrderPage("service2", false);
+      }
+    })();
+  </script>
+</body>
+</html>
